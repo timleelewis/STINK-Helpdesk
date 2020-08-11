@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+    <title>Help Desk Login</title>
+        <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="request-page">
+    <div class="form">
+        <form class="registration-form" action="#" th:action="@{/save}" th:object="${user}" method="post">
+        <label for="registration-form">Register</label>
+        <input type="text" th:field="${user.FirstName}" placeholder="first name"/>
+        <input type="text" th:field="${user.Password}" placeholder="password"/>
+        <input type="text" th:field="${user.Email}" placeholder="email"/>
+        <button>Create</button>
+        <p class="message">Already Registered? <a href="#">Login</a></p>
+        </form>
+        <form class="login-form">
+            <label for="login-form">Login</label>
+            <input type="text" th:field="${user.UserID}" placeholder="username"/>
+            <input type="text" th:field="${user.Password}" placeholder="password"/>
+            <button>Login</button>
+            <p class="message">Not Registered?<a href="#">Register</a></p>
+        </form>
+        </div>
+        </div>
+        <!-- What happens when you click register-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+        <script>
+            $('.message a').click(function(){
+            $('form').animate({height: "toggle", opacity: "toggle"},"slow");
+            });
+        </script>
+    </body>
+</html>

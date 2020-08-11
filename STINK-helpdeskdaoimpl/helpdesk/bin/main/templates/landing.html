@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/node_modules/angular/angular.js"></script>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+    <main>
+    <div id ="menuBar">
+        <u1>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+        </u1>
+    </div>
+    
+
+    <button class="open-button" onclick="openForm()">New Repair</button>
+    <div id="behind-form" class="behind-form"></div>
+        <div class="newrepair-form" id="myForm">
+            <img class="closeIcon" src="closeIcon.png" onclick="closeForm()">
+
+            <form action="request.php" class="form-container" id="form-c">
+              <h1>Request a Repair!</h1>
+              <label for="repairtype"><b>Type of repair</b></label>
+              <select name="RepairType" id="RepairType">
+                  <option value="-------"></option>
+                  <option value="Screen">Screen</option>
+                  <option value="Speaker">Speaker</option>
+                  <option value="Keyboard">Keyboard</option>
+                  <option value="Battery">Battery</option>
+              </select>
+          
+              <label for="descript"><b>Descripiton</b></label>
+              <textarea name="content"  th:field="$EName"{RepairDid="content" placeholder="Describe your repair" rows="4" cols="30" required></textarea>
+          
+              <button type="submit" class="btn">Send Repair</button>
+              
+  
+            </form>
+			
+			
+        </div>
+		
+		<div id="request-log" class="myrequest"> 
+			<h1>Request Log</h1>
+		</div>
+		<div id="log" class="mylog" include="get-data.php">
+		<?php include 'get-data.php';?>
+
+			
+		
+		</div>
+		
+    </div>
+    </main>
+    <script>
+        var bform = document.getElementById("behind-form");
+
+        function toggleSidebar(){
+            document.getElementById("sidebar").classList.toggle('active');
+        }
+
+        function openForm(){
+            document.getElementById("myForm").style.display = "block";
+            bform.style.display = "block";
+            document.getElementById("form-c").reset();
+            
+        }
+
+        function closeForm(){
+            document.getElementById("myForm").style.display = "none";
+            bform.style.display = "none";  
+            document.getElementById("form-c").reset();
+        }
+
+        window.onclick = function(event){
+            if(event.target == bform){
+                document.getElementById("myForm").style.display = "none";
+                document.getElementById("form-c").reset();
+                bform.style.display="none";
+            }
+        }
+    </script>
+</body>
+
+
+
+</html>
